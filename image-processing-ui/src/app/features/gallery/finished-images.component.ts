@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, of, switchMap, timer } from 'rxjs';
 import { ImageService } from '../../core/image.service';
@@ -82,7 +82,10 @@ const POLL_INTERVAL_MS = 3000;
       position: fixed; inset: 0; background: rgba(16, 24, 40, .5);
       display: flex; align-items: center; justify-content: center; z-index: 10;
     }
-    .modal { background: #fff; border-radius: 12px; padding: 1.25rem; width: min(420px, 90vw); }
+    .modal {
+      background: #fff; border-radius: 12px; padding: 1.25rem; width: min(420px, 90vw);
+      max-height: 85vh; overflow-y: auto;
+    }
     .modal header { display: flex; justify-content: space-between; align-items: center; }
     .modal h3 { margin: 0; font-size: 1.1rem; word-break: break-all; }
     .close { border: none; background: transparent; font-size: 1.1rem; cursor: pointer; color: #6b7689; }

@@ -2,8 +2,9 @@ import {
   AfterViewInit, Component, ElementRef, OnDestroy, computed, effect, input, viewChild,
 } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-Chart.register(...registerables);
+Chart.register(...registerables, ChartDataLabels);
 
 /** Small reusable doughnut chart wrapping Chart.js. Driven by signal inputs. */
 @Component({
@@ -62,7 +63,15 @@ export class PieChartComponent implements AfterViewInit, OnDestroy {
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom' } },
+        plugins: {
+          legend: { position: 'bottom' },
+          // Show the count on each slice (not only on hover); hide zeros.
+          datalabels: {
+            color: '#fff',
+            font: { weight: 'bold', size: 14 },
+            formatter: (value: number) => (value > 0 ? value : ''),
+          },
+        },
       },
     });
   }
