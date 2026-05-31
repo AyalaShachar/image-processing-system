@@ -1,0 +1,19 @@
+# ---------- .NET ----------
+[Bb]in/
+[Oo]bj/
+*.user
+.vs/
+
+# Uploaded images (runtime data, not source)
+Uploads/
+**/Uploads/
+
+# ---------- Angular / Node ----------
+node_modules/
+dist/
+.angular/
+
+# ---------- Misc ----------
+*.log
+.DS_Store
+Thumbs.db

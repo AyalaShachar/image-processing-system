@@ -20,6 +20,9 @@ builder.Services.AddControllers();
 // In-memory image store, shared across the whole application (thread-safe).
 builder.Services.AddSingleton<IImageRepository, ImageRepository>();
 
+// Handles saving uploaded files to disk and reading their dimensions.
+builder.Services.AddSingleton<IImageStorageService, ImageStorageService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
