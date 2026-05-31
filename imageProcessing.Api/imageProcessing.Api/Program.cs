@@ -43,8 +43,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
+else
+{
+    // Skip HTTPS redirection in Development so the Angular client can call the
+    // API over plain HTTP without dev-certificate / redirect friction.
+    app.UseHttpsRedirection();
+}
 
 app.UseCors(AngularCorsPolicy);
 
