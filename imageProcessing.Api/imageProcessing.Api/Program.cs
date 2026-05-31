@@ -1,0 +1,44 @@
+using imageProcessing.Api.Services;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// CORS policy allowing the Angular client to call this API.
+const string AngularCorsPolicy = "AngularClient";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(AngularCorsPolicy, policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+// Add services to the container.
+builder.Services.AddControllers();
+
+// In-memory image store, shared across the whole application (thread-safe).
+builder.Services.AddSingleton<IImageRepository, ImageRepository>();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseCors(AngularCorsPolicy);
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
