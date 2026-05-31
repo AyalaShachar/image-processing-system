@@ -1,0 +1,17 @@
+.app-header {
+  margin-bottom: 1.5rem;
+  h1 { margin: 0 0 .25rem; font-size: 1.8rem; color: #1f2a44; }
+  p { margin: 0; color: #6b7689; }
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+
+  .column-full { grid-column: 1 / -1; }
+}
+
+@media (max-width: 800px) {
+  .dashboard { grid-template-columns: 1fr; }
+}

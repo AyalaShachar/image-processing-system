@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: #eef1f6;
+  color: #1f2a44;
+}
+
+body { padding: 1.5rem; }
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, .08), 0 1px 2px rgba(16, 24, 40, .06);
+
+  h2 { margin: 0 0 1rem; font-size: 1.15rem; color: #1f2a44; }
+}
