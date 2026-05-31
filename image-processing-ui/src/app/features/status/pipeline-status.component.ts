@@ -43,9 +43,12 @@ const EMPTY: StatusSnapshot = { pipelines: [], images: [] };
     </section>
   `,
   styles: [`
-    .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    :host { display: block; height: 100%; }
+    .card { height: 100%; }
+    .charts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; }
+    .chart { min-width: 0; }
     .chart h3 { margin: 0 0 .5rem; font-size: .9rem; font-weight: 600; color: #5b6573; text-align: center; }
-    @media (max-width: 1100px) { .charts { grid-template-columns: 1fr; } }
+    @media (max-width: 1100px) { .charts { grid-template-columns: minmax(0, 1fr); } }
   `],
 })
 export class PipelineStatusComponent {

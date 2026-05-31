@@ -33,7 +33,8 @@ import { ImageDetails } from '../../core/models';
     </section>
   `,
   styles: [`
-    .upload { display: flex; flex-direction: column; gap: 0.75rem; }
+    :host { display: block; height: 100%; }
+    .upload { display: flex; flex-direction: column; gap: 0.75rem; height: 100%; }
     .dropzone {
       position: relative; display: flex; align-items: center; justify-content: center;
       min-height: 160px; border: 2px dashed #b9c2d0; border-radius: 10px;
