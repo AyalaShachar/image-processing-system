@@ -23,6 +23,14 @@ builder.Services.AddSingleton<IImageRepository, ImageRepository>();
 // Handles saving uploaded files to disk and reading their dimensions.
 builder.Services.AddSingleton<IImageStorageService, ImageStorageService>();
 
+// Pipeline processing: configurable delays, live monitor, async queue, engine
+// and the background worker that runs queued images through the pipelines.
+builder.Services.Configure<PipelineOptions>(builder.Configuration.GetSection("Pipeline"));
+builder.Services.AddSingleton<IPipelineMonitor, PipelineMonitor>();
+builder.Services.AddSingleton<IPipelineQueue, PipelineQueue>();
+builder.Services.AddSingleton<IPipelineEngine, PipelineEngine>();
+builder.Services.AddHostedService<PipelineBackgroundService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

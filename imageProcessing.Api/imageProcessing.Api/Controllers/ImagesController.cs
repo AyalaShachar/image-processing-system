@@ -11,15 +11,18 @@ namespace imageProcessing.Api.Controllers
     {
         private readonly IImageRepository _repository;
         private readonly IImageStorageService _storage;
+        private readonly IPipelineQueue _queue;
         private readonly ILogger<ImagesController> _logger;
 
         public ImagesController(
             IImageRepository repository,
             IImageStorageService storage,
+            IPipelineQueue queue,
             ILogger<ImagesController> logger)
         {
             _repository = repository;
             _storage = storage;
+            _queue = queue;
             _logger = logger;
         }
 
@@ -47,7 +50,8 @@ namespace imageProcessing.Api.Controllers
             _repository.Add(image);
             _logger.LogInformation("Stored image {Id} ({Width}x{Height}).", image.Id, image.Width, image.Height);
 
-            // TODO (step 3): kick off ImagePipeline asynchronously here.
+            // Queue for asynchronous background processing; returns immediately.
+            _queue.Enqueue(image.Id);
 
             return CreatedAtAction(nameof(GetById), new { id = image.Id }, ToDetails(image));
         }
