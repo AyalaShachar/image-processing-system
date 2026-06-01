@@ -24,7 +24,7 @@ const POLL_INTERVAL_MS = 3000;
                 @if (isError(img)) {
                   <div class="broken">⚠</div>
                 } @else {
-                  <img [src]="url(img.id)" [width]="img.width" [height]="img.height" [alt]="img.fileName" />
+                  <img [src]="url(img.id)" [style.aspect-ratio]="img.width + '/' + img.height" [alt]="img.fileName" />
                 }
               </div>
               <figcaption>
@@ -65,9 +65,9 @@ const POLL_INTERVAL_MS = 3000;
     .item:hover { transform: translateY(-2px); }
     .thumb {
       display: flex; align-items: center; justify-content: center;
-      height: 150px; overflow: auto; background: #f1f4f9; border-radius: 8px;
+      height: 150px; padding: 0.5rem; background: #f1f4f9; border-radius: 8px;
     }
-    .thumb img { display: block; }
+    .thumb img { display: block; max-width: 100%; max-height: 100%; object-fit: fill; }
     .broken { font-size: 2rem; color: #ef4444; }
     figcaption { display: flex; flex-direction: column; gap: .15rem; padding: .4rem .1rem; }
     .name { font-size: .82rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
